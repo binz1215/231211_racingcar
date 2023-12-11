@@ -15,11 +15,15 @@ class Valid {
     const eachCar = car.split(',');
     this.#validateLength(eachCar);
     this.#validateDuple(eachCar);
+
+    return car;
   }
 
   async validateTime() {
-    const time = await inputView.attemptTime();
-    this.#validateNumber(time);
+    let time = await inputView.attemptTime();
+    time = this.#validateNumber(time);
+
+    return time;
   }
 
   /**
@@ -44,6 +48,8 @@ class Valid {
     if (Number.isNaN(timeNum) || timeNum < 1) {
       throw new Error(`[ERROR] 유효한 숫자형태가 아닙니다.`);
     }
+
+    return timeNum;
   }
 }
 
